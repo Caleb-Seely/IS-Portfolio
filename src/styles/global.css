@@ -1,0 +1,66 @@
+/* Tailwind Base Styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom global styles can go here */
+
+/* Example custom font setup */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #1A1712; /* black background */
+  color: #F9CB71; /* forest green text */
+}
+
+/* Customizing heading styles */
+h1, h2, h3 {
+  font-family: 'Pacifico', cursive; /* Handwritten font for headings */
+}
+
+/* Link Styles */
+a {
+  color: #4AA308; /* forest green */
+  text-decoration: none;
+}
+a:hover {
+  color: #4AA308; /* lighter forest green */
+  text-decoration: underline;
+}
+
+/* Adding some spacing and padding globally */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* For smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure images and videos are responsive */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Tailwind Custom Utilities */
+@layer components {
+  .card {
+    @apply bg-white shadow-lg rounded-lg p-6;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto px-4;
+  }
+}
