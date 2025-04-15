@@ -1,5 +1,13 @@
 ---
 // src/layouts/Layout.astro
+
+// Define the props interface
+interface Props {
+  title?: string;
+}
+
+// Destructure props with default value
+const { title = 'EcoTrail - Outdoor Sustainability Projects' } = Astro.props as Props;
 ---
 
 <!DOCTYPE html>
@@ -9,33 +17,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Outdoor sustainability projects promoting environmental conservation and adventure" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{Astro.props.title || 'EcoTrail - Outdoor Sustainability Projects'}</title>
+    <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        const dropdownBtn = document.getElementById('nav-dropdown-btn');
+        const dropdownMenu = document.getElementById('nav-dropdown');
+        const currentPath = window.location.pathname;
+
+        // Hide the current page from dropdown
+        if (dropdownMenu) {
+          const links = dropdownMenu.querySelectorAll('a');
+          links.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+              link.style.display = 'none';
+            }
+          });
+        }
+
+        // Toggle dropdown
+        if (dropdownBtn && dropdownMenu) {
+          dropdownBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('hidden');
+          });
+
+          // Close dropdown when clicking outside
+          document.addEventListener('click', (e) => {
+            if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+              dropdownMenu.classList.add('hidden');
+            }
+          });
+        }
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+          mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+          });
+        }
+      });
+    </script>
   </head>
-  <body class="font-[Inter] antialiased text-slate-800">
+  <body class="font-[Inter] antialiased text-slate-800 bg-black text-white">
     <header class="fixed w-full z-50 transition-all duration-300" id="header">
       <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-20">
           <a href="/" class="flex items-center">
-            <span class="text-white font-bold text-xl">EcoTrail</span>
+            <span class="text-white font-bold text-xl">Isaak Simpson</span>
           </a>
           
-          <nav class="hidden md:block">
-            <ul class="flex space-x-8">
-              <li><a href="/" class="text-white hover:text-emerald-300 transition-colors">Home</a></li>
-              <li><a href="/projects" class="text-white hover:text-emerald-300 transition-colors">Projects</a></li>
-              <li><a href="/about" class="text-white hover:text-emerald-300 transition-colors">About</a></li>
-              <li><a href="/blog" class="text-white hover:text-emerald-300 transition-colors">Blog</a></li>
-              <li><a href="/contact" class="text-white hover:text-emerald-300 transition-colors">Contact</a></li>
-            </ul>
-          </nav>
           
           <div class="flex items-center space-x-4">
-            <a href="/volunteer" class="hidden md:inline-flex items-center px-4 py-2 bg-emerald-500 text-white rounded-lg font-medium transition-all hover:bg-emerald-600">
-              Volunteer
-            </a>
+            <div class="hidden md:block relative">
+              <button class="flex items-center px-4 py-2 bg-emerald-500 text-white rounded-lg font-medium transition-all hover:bg-emerald-600" id="nav-dropdown-btn">
+                Navigate
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <div class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl hidden" id="nav-dropdown">
+                <a href="/" class="block px-4 py-2 text-slate-700 hover:bg-emerald-50 hover:text-emerald-500">Home</a>
+                <a href="/projects" class="block px-4 py-2 text-slate-700 hover:bg-emerald-50 hover:text-emerald-500">Projects</a>
+                <a href="/about" class="block px-4 py-2 text-slate-700 hover:bg-emerald-50 hover:text-emerald-500">About</a>
+              </div>
+            </div>
             <button class="text-white md:hidden" id="mobile-menu-button">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -51,13 +102,6 @@
           <li><a href="/" class="block text-white hover:text-emerald-300 transition-colors">Home</a></li>
           <li><a href="/projects" class="block text-white hover:text-emerald-300 transition-colors">Projects</a></li>
           <li><a href="/about" class="block text-white hover:text-emerald-300 transition-colors">About</a></li>
-          <li><a href="/blog" class="block text-white hover:text-emerald-300 transition-colors">Blog</a></li>
-          <li><a href="/contact" class="block text-white hover:text-emerald-300 transition-colors">Contact</a></li>
-          <li class="pt-4">
-            <a href="/volunteer" class="inline-flex items-center px-4 py-2 bg-emerald-500 text-white rounded-lg font-medium transition-all hover:bg-emerald-600">
-              Volunteer
-            </a>
-          </li>
         </ul>
       </div>
     </header>
@@ -68,7 +112,7 @@
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 class="text-xl font-bold mb-4">EcoTrail</h3>
+            <h3 class="text-xl font-bold mb-4">Isaak Simpson</h3>
             <p class="text-slate-400">
               Promoting sustainable outdoor adventure and environmental conservation.
             </p>
@@ -100,4 +144,10 @@
               <li><a href="/" class="text-slate-400 hover:text-white transition-colors">Home</a></li>
               <li><a href="/projects" class="text-slate-400 hover:text-white transition-colors">Projects</a></li>
               <li><a href="/about" class="text-slate-400 hover:text-white transition-colors">About Us</a></li>
-              <li><a href="/blog" class
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
