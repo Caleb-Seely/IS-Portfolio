@@ -31,7 +31,7 @@ const projectsData = sortedProjects.map(project => {
       title: project.data.title,
       date: project.data.date,
       image: project.data.image,
-      materials: project.data.materials
+      materials: project.data.materials || []
     },
     // Convert the Markdown content to HTML
     content: project.body
@@ -77,7 +77,7 @@ const projectsData = sortedProjects.map(project => {
                       <h2 class="text-xl font-bold mb-2">{project.data.title}</h2>
                       <p class="text-sm font-semibold">Materials:</p>
                       <ul class="list-disc list-inside text-sm mb-4">
-                        {project.data.materials.map((material) => <li>{material}</li>)}
+                        {(project.data.materials || []).map((material) => <li>{material}</li>)}
                       </ul>
                     </div>
 
@@ -201,7 +201,7 @@ const projectsData = sortedProjects.map(project => {
              <div class="bg-sand p-4 rounded-lg shadow-md sticky top-4">
                <h3 class="font-bold text-lg mb-2 text-forest">Materials Used</h3>
                <ul class="space-y-1">
-                 ${project.data.materials.map(material => `
+                 ${(project.data.materials || []).map(material => `
                    <li class="flex items-start">
                      <span class="inline-block w-1.5 h-1.5 bg-forest rounded-full mt-1.5 mr-2 flex-shrink-0"></span>
                      <span class="text-gray-700">${material}</span>
