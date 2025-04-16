@@ -22,6 +22,13 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", date_format: "M/D/YYYY", time_format: false }
       - { label: "Featured Image", name: "image", widget: "image" }
+      - { 
+          label: "Additional Images", 
+          name: "gallery", 
+          widget: "list", 
+          required: false,
+          field: { label: "Image", name: "image", widget: "image" }
+        }
       - { label: "Materials", name: "materials", widget: "list" }
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Order", name: "order", widget: "number", default: 1, required: false }

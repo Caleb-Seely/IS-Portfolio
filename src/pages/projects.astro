@@ -163,21 +163,27 @@ const projectsData = sortedProjects.map(project => {
        `;
 
      // Process the markdown content
-     let processedContent = project.content
-       // First remove any visible ### that weren't properly processed
-       .replace(/^###\s*/gm, '')
-       // Process headings (reduced margins)
-       .replace(/### (.*?)(?:\n|$)/g, '<h3 class="text-lg font-bold text-forest mt-3 mb-1">$1</h3>')
-       .replace(/## (.*?)(?:\n|$)/g, '<h2 class="text-xl font-bold text-forest mt-4 mb-1">$1</h2>')
-       // Process lists with proper text color
-       .replace(/^- (.*?)$/gm, '<li class="mb-0.5 text-gray-700">$1</li>')
-       .replace(/(<li.*?<\/li>\n?)+/g, '<ul class="list-disc ml-4 mb-3 text-gray-700">$&</ul>')
-       // Process bold text
-       .replace(/\*\*(.*?)\*\*/g, '<strong class="text-forest font-semibold">$1</strong>')
-       // Process paragraphs with proper text color
-       .replace(/^(?!<[hul])(.+?)$/gm, '<p class="text-gray-700 leading-relaxed mb-2">$1</p>')
-       // Clean up extra newlines
-       .replace(/\n{2,}/g, '\n');
+let processedContent = project.content
+  // First process specific words you want as headings
+  .replace(/^(Features|Materials|Process|Results)(\s*)$/gm, 
+           '<h3 class="text-lg font-bold text-black mt-3 mb-1">$1</h3>')
+  
+  // Then process standard markdown headings
+  .replace(/^###\s*(.*?)$/gm, '<h3 class="text-lg font-bold text-black mt-3 mb-1">$1</h3>')
+  .replace(/^##\s*(.*?)$/gm, '<h2 class="text-xl font-bold text-black mt-4 mb-1">$1</h2>')
+  
+  // Process lists
+  .replace(/^- (.*?)$/gm, '<li class="mb-0.5 text-gray-700">$1</li>')
+  .replace(/(<li.*?<\/li>\n?)+/g, '<ul class="list-disc ml-4 mb-3 text-gray-700">$&</ul>')
+  
+  // Process bold text
+  .replace(/\*\*(.*?)\*\*/g, '<strong class="text-forest font-semibold">$1</strong>')
+  
+  // Process paragraphs last, excluding already processed content
+  .replace(/^(?!<[hul])(.*?)$/gm, '<p class="text-gray-700 leading-relaxed mb-2">$1</p>')
+  
+  // Clean up extra newlines
+  .replace(/\n{2,}/g, '\n');
 
      content.innerHTML = `
        <div class="space-y-4">

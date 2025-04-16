@@ -27,10 +27,17 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h4, h5, h6 {
   font-family: var(--font-family-heading);
   line-height: var(--line-height-heading);
   color: var(--color-text-light);
+}
+
+/* Modal content headings */
+#modalContent h3 {
+  color: black;
+  font-weight: bold;
+  font-family: inherit;
 }
 
 /* Links */
