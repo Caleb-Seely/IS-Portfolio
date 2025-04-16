@@ -1,48 +1,92 @@
-# Astro Starter Kit: Basics
+# Portfolio Website
 
-```sh
-npm create astro@latest -- --template basics
+A customizable portfolio website built with Astro, designed to be easily modified by non-developers.
+
+## 🚀 Quick Start
+
+1. Clone this repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:4321](http://localhost:4321) in your browser
+
+## 📁 Project Structure
+
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
-├── public/
-│   └── favicon.svg
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/     # Reusable UI components
+│   ├── content/        # Project data and content
+│   ├── layouts/        # Page layouts
+│   ├── pages/          # Website pages
+│   ├── styles/         # Global styles and theme
+│   └── utils/          # Helper functions
+├── public/             # Static assets
+└── package.json        # Project configuration
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🎨 Customization Guide
 
-## 🧞 Commands
+### Changing Colors and Theme
 
-All commands are run from the root of the project, from a terminal:
+All colors and theme settings are centralized in `src/styles/theme.css`. You can modify:
+- Primary colors
+- Background colors
+- Text colors
+- Spacing
+- Typography
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Adding/Editing Projects
 
-## 👀 Want to learn more?
+Projects are managed in `src/content/projects.ts`. Each project has:
+- Title
+- Description
+- Image
+- Technologies used
+- Links
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Modifying Layout
+
+The main layout is in `src/layouts/Layout.astro`. You can modify:
+- Navigation
+- Footer
+- Page structure
+
+### Adding New Pages
+
+1. Create a new `.astro` file in `src/pages/`
+2. Use the existing layout components
+3. Add your content
+
+## 🛠️ Available Scripts
+
+| Command           | Action                                      |
+|------------------|---------------------------------------------|
+| `npm run dev`    | Start development server                    |
+| `npm run build`  | Build for production                        |
+| `npm run preview`| Preview production build                    |
+
+## 📝 Best Practices
+
+1. Keep all styles in `src/styles/theme.css`
+2. Use existing components when possible
+3. Add new projects in `src/content/projects.ts`
+4. Test changes locally before deploying
+
+## 🚀 Deployment
+
+This project can be deployed to any static hosting service:
+- Vercel
+- Netlify
+- GitHub Pages
+
+## 📚 Resources
+
+- [Astro Documentation](https://docs.astro.build)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Project Structure Guide](https://docs.astro.build/en/basics/project-structure/)

@@ -60,43 +60,45 @@ function openProjectModal(slug) {
   let processedContent = project.content
     // Fix heading patterns
     .replace(/#{1,3}\s*\n#{1,3}\s*\n#{1,3}\s*/g, '### ')
-    // Process headings with bolder text
-    .replace(/### (.*?)(?:\n|$)/g, '<h3 class="text-lg font-extrabold text-forest mt-4 mb-2 tracking-tight">$1</h3>')
-    .replace(/## (.*?)(?:\n|$)/g, '<h2 class="text-xl font-extrabold text-forest mt-5 mb-2 tracking-tight">$1</h2>')
-    // Process lists
-    .replace(/^- (.*?)$/gm, '<li class="mb-1.5">$1</li>')
-    // Wrap lists
-    .replace(/(<li.*?<\/li>\n?)+/g, '<ul class="list-disc space-y-1.5 mb-4 ml-4">$&</ul>')
-    // Process bold text
-    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-forest font-bold">$1</strong>')
-    // Process paragraphs (any text not already wrapped)
-    .replace(/^(?!<[hou])(.+?)$/gm, '<p class="text-gray-700 leading-relaxed mb-3">$1</p>')
+    // Process headings with bolder text and consistent spacing
+    .replace(/### (.*?)(?:\n|$)/g, '<h3 class="text-lg font-bold text-forest mt-6 mb-3 tracking-tight">$1</h3>')
+    .replace(/## (.*?)(?:\n|$)/g, '<h2 class="text-xl font-bold text-forest mt-8 mb-4 tracking-tight">$1</h2>')
+    // Process lists with better spacing and bullets
+    .replace(/^- (.*?)$/gm, '<li class="mb-2 text-gray-700">$1</li>')
+    // Wrap lists with consistent styling
+    .replace(/(<li.*?<\/li>\n?)+/g, '<ul class="list-disc space-y-2 mb-6 ml-5 text-gray-700">$&</ul>')
+    // Process bold text with consistent styling
+    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-forest font-semibold">$1</strong>')
+    // Process paragraphs with improved typography
+    .replace(/^(?!<[hou])(.+?)$/gm, '<p class="text-gray-700 leading-relaxed mb-4 text-base">$1</p>')
     // Clean up extra newlines
     .replace(/\n{3,}/g, '\n\n');
 
-  // Set modal content with improved layout
+  // Set modal content with improved layout and spacing
   modalContent.innerHTML = `
-    <div class="text-gray-500 mb-4 flex items-center">
-      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-      <time datetime="${project.data.date}">${projectDate}</time>
-    </div>
-    
-    ${imageGalleryHtml}
-    
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="md:col-span-2">
-        <div class="prose max-w-none">
-          ${processedContent}
-        </div>
+    <div class="space-y-6">
+      <div class="flex items-center text-gray-500 space-x-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <time datetime="${project.data.date}">${projectDate}</time>
       </div>
-      <div>
-        <div class="bg-sand p-4 rounded-lg shadow-md sticky top-4">
-          <h3 class="font-extrabold text-lg mb-3 text-forest tracking-tight">Materials Used</h3>
-          <ul class="space-y-2">
-            ${materialsList}
-          </ul>
+      
+      ${imageGalleryHtml}
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="md:col-span-2">
+          <div class="prose max-w-none [&>*:first-child]:mt-0">
+            ${processedContent}
+          </div>
+        </div>
+        <div>
+          <div class="bg-sand p-6 rounded-lg shadow-md sticky top-4">
+            <h3 class="font-bold text-lg mb-4 text-forest tracking-tight">Materials Used</h3>
+            <ul class="space-y-3">
+              ${materialsList}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

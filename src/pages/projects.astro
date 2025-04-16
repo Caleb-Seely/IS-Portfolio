@@ -168,13 +168,13 @@ const projectsData = sortedProjects.map(project => {
        .replace(/^###\s*/gm, '')
        // Process headings (reduced margins)
        .replace(/### (.*?)(?:\n|$)/g, '<h3 class="text-lg font-bold text-forest mt-3 mb-1">$1</h3>')
-       .replace(/## (.*?)(?:\n|$)/g, '<h2 class="text-xl font-bold text-forest mt-4 mb-1">$2</h2>')
-       // Process lists with tighter spacing
-       .replace(/^- (.*?)$/gm, '<li class="mb-0.5">$1</li>')
-       .replace(/(<li.*?<\/li>\n?)+/g, '<ul class="list-disc ml-4 mb-3">$&</ul>')
+       .replace(/## (.*?)(?:\n|$)/g, '<h2 class="text-xl font-bold text-forest mt-4 mb-1">$1</h2>')
+       // Process lists with proper text color
+       .replace(/^- (.*?)$/gm, '<li class="mb-0.5 text-gray-700">$1</li>')
+       .replace(/(<li.*?<\/li>\n?)+/g, '<ul class="list-disc ml-4 mb-3 text-gray-700">$&</ul>')
        // Process bold text
-       .replace(/\*\*(.*?)\*\*/g, '<strong class="text-forest">$1</strong>')
-       // Process paragraphs with less spacing
+       .replace(/\*\*(.*?)\*\*/g, '<strong class="text-forest font-semibold">$1</strong>')
+       // Process paragraphs with proper text color
        .replace(/^(?!<[hul])(.+?)$/gm, '<p class="text-gray-700 leading-relaxed mb-2">$1</p>')
        // Clean up extra newlines
        .replace(/\n{2,}/g, '\n');

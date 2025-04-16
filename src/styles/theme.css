@@ -1,0 +1,69 @@
+/* Theme Configuration
+ * This file contains all customizable theme variables.
+ * Modify these values to change the look and feel of the website.
+ */
+
+:root {
+  /* Colors */
+  --color-primary: #4AA308;
+  --color-primary-light: #5BB319;
+  --color-primary-dark: #3A9208;
+  
+  --color-background: #1A1712;
+  --color-background-light: #2A2722;
+  --color-background-dark: #0A0702;
+  
+  --color-text: #F9CB71;
+  --color-text-light: #FFDB91;
+  --color-text-dark: #E9BB51;
+  
+  --color-accent: #FF6B6B;
+  --color-accent-light: #FF8B8B;
+  --color-accent-dark: #E64B4B;
+
+  /* Typography */
+  --font-family-base: 'Inter', sans-serif;
+  --font-family-heading: 'Pacifico', cursive;
+  
+  --font-size-base: 16px;
+  --font-size-sm: 14px;
+  --font-size-lg: 18px;
+  
+  --line-height-base: 1.5;
+  --line-height-heading: 1.2;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+
+  /* Border Radius */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0A0702;
+    --color-background-light: #1A1712;
+    --color-background-dark: #000000;
+    
+    --color-text: #FFDB91;
+    --color-text-light: #FFEB91;
+    --color-text-dark: #E9BB51;
+  }
+} 
