@@ -8,7 +8,7 @@ export const siteConfig = {
   // Site Information
   title: "Portfolio",
   description: "A showcase of innovative projects and designs",
-  author: "Your Name",
+  author: "I. Simpson",
   
   // Navigation
   navItems: [
